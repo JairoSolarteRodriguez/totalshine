@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Log in {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h2>Welcome back!</h2>
+            </header>
+            <form method="POST">
+                <label for="email">Email: <input type="email" name="email" id="email" required></label>
+                <label for="password">Password: <input type="password" name="password" id="password" required></label>
+                <input type="submit" value="Log In">
+            </form>
+        </div>
+    </section>
+{% endblock %}
+

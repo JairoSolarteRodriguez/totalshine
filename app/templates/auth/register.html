@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign up {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h2>Welcome, thanks for registering</h2>
+            </header>
+            <form method="POST">
+                <label for="name">Name: <input type="text" name="name" id="name" required></label>
+                <label for="last_name">Last name: <input type="text" name="last_name" id="last_name" required></label>
+                <label for="email">Email: <input type="email" name="email" id="email" required></label>
+                <label for="phone_number">Phone number: <input type="text" name="phone_number" id="phone_number" required></label>
+                <label for="password">Password: <input type="password" name="password" id="password" required></label>
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+    </section>
+{% endblock %}

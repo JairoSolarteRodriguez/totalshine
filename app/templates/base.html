@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>{% block title %}{% endblock %}- Total Shine</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome-all.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='noscript.css') }}">
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
+</head>
+
+<body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+      <a href="{{ url_for('schedule.index') }}" class="logo"><strong>Total</strong> <span>Shine</span></a>
+      <nav>
+        <a href="#menu">Menu</a>
+      </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <ul class="links">
+        <li><a href="{{ url_for('schedule.index') }}">Home</a></li>
+      </ul>
+      <ul class="actions stacked">
+        {# <li><a href="#" class="button primary fit">Get Started</a></li> #}
+        {% if g.user %}
+            <li><a href="{{ url_for('auth.logout') }}" class="button fit">Log out</a></li>
+        {% else %}
+            <li><a href="{{ url_for('auth.login') }}" class="button fit">Log In</a></li>
+            <li><a href="{{ url_for('auth.register') }}" class="button fit">Sign Up</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    {# {% block title_page %}{% endblock %} #}
+
+    <!-- Contenido principal de la página -->
+    {% block content %}
+    {% endblock %}
+
+    <div class="error-message">
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="inner">
+        <ul class="icons">
+          <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+          <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+          <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+          <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+          <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; {{ current_year }} Total Shine Cleaning Service</li>
+        </ul>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  {# <script src="{{ url_for('static', filename='scripts/custom_script.js') }}"></script> #}
+  <script src="{{ url_for('static', filename='scripts/jquery.min.js') }} "></script>
+  <script src="{{ url_for('static', filename='scripts/jquery.scrolly.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/jquery.scrollex.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/browser.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/breakpoints.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/util.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+
+</body>
+
+</html>
