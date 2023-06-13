@@ -45,8 +45,14 @@ def register():
                     VALUES(%s, %s, %s, %s, %s);
                 """,(name, last_name, email, phone_number, generate_password_hash(password=password))
             )
-            db.commit()
 
+            c.execute(
+                """
+                   INSERT INTO public."role" (id_user, rol) VALUES((SELECT id_user FROM user_app WHERE email = %s), 'user');
+                """,(email,)
+            )
+            db.commit()
+            
             return redirect(url_for('auth.login'))
 
         flash(error)
@@ -63,7 +69,7 @@ def login():
         db, c = get_db()
         error = None
 
-        c.execute('SELECT * FROM user_app WHERE email = %s', (email,))
+        c.execute('SELECT * FROM user_app ua INNER JOIN role r ON ua.id_user = r.id_user WHERE ua.email = %s', (email,))
         user = c.fetchone()
 
         if user is None:
@@ -75,7 +81,7 @@ def login():
             session.clear()
             session['user_id'] = user['id_user']
 
-            return redirect(url_for('schedule.index'))
+            return redirect(url_for('home.index'))
 
         flash(error)
 
@@ -90,7 +96,7 @@ def load_logged_in_user():
     else:
         db, c = get_db()
         c.execute(
-            'SELECT id_user, name, last_name, email, phone_number FROM user_app WHERE id_user = %s' ,(user_id, )
+            'SELECT * FROM user_app ua INNER JOIN role r ON ua.id_user = r.id_user WHERE ua.id_user = %s' ,(user_id, )
         )
         g.user = c.fetchone()
             
@@ -104,7 +110,20 @@ def login_required(view):
 
     return wrapped_view
 
+def admin_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        elif  g.user['rol'] != 'admin':
+            return redirect(url_for('home.index'))
+
+        return view(**kwargs)
+
+    return wrapped_view 
+        
+
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('schedule.index'))
+    return redirect(url_for('home.index'))

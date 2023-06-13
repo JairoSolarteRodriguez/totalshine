@@ -1,1 +1,21 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Appointment Schedule {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h2>Hello, thank you for choosing us, then schedule your cleaning appointment.</h2>
+            </header>
+            <form method="POST">
+                <label for="date_for">Cleaning day: <input type="datetime-local" name="date_for" id="date_for" required></label>
+                <label for="address">Address: <input type="text" name="address" id="address" required></label>
+                <label for="phone">Phone number: <input type="text" name="phone" id="phone" required></label>
+                <label for="email">Email: <input type="email" name="email" id="email" required></label>
+                <label for="notes">Notes: <textarea name="notes" id="notes" cols="30" rows="10"></textarea></label>
+                <input type="submit" value="Schedule">
+            </form>
+        </div>
+    </section>
+{% endblock %}

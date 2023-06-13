@@ -1,0 +1,19 @@
+.stars {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.stars span {
+  color: gray;
+  transition: color 0.2s;
+}
+
+.stars span:hover,
+.stars span:hover ~ span {
+  color: gold;
+}
+
+.stars span.stars_active,
+.stars span.stars_active {
+  color: gold;
+}

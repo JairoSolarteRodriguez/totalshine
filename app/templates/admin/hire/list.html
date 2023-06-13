@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Products {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h3>Hiring Management</h3>
+            </header>
+            
+            {% if hiring|length == 0 %}
+                <h4>There are no job offers yet, do you want to create one?</h4>
+                <ul class="actions fit small">
+                    <li><a href="{{ url_for('hire.create') }}" class="button primary fit icon solid fa-plus">Add Hire</a></li>
+                </ul>
+            {% else %}
+                <!-- Table -->
+                <h4>List of job offers</h4>
+                <div class="alt">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                {# <th>Image</th> #}
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for hire in hiring %}
+                                <tr>
+                                    <td>{{ hire['title'] }}</td>
+                                    <td>{{ hire['description'] }}</td>
+                                    {# <td>
+                                        <img width="100px" height="100px" src="{{ product['url_image'] }}" alt="{{ product['title']}}">
+                                    </td> #}
+                                    <td>details</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="actions fit small">
+                                        <li><a href="{{ url_for('hire.create') }}" class="button primary fit icon solid fa-plus">Add product</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

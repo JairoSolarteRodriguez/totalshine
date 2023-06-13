@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Administration Panel {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h2>Welcome {{ g.user['name']}} {{ g.user['last_name'] }} ({{ g.user['rol'] }})</h2>
+            </header>
+            <div>
+                <section>
+                    <section class="my-grid">
+                        <div class="content">
+                            <div class="inner">
+                                <header class="major">
+                                    <h3>Products</h3>
+                                </header>
+                                <p>Manage products. Add, Delete, Update or list the products.</p>
+                                <ul class="actions">
+                                    <li><a href="{{ url_for('product.list') }}" class="button">Go to products</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="inner">
+                                <header class="major">
+                                    <h3>Hiring</h3>
+                                </header>
+                                <p>Manage hiring. Add, Delete, Update or list job proposals.</p>
+                                <ul class="actions">
+                                    <li><a href="{{ url_for('hire.list') }}" class="button">Go to hire</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="inner">
+                                <header class="major">
+                                    <h3>Contact</h3>
+                                </header>
+                                <p>Gestionar contacto hacia la empresa. listar y gestionar mensajes enviados.</p>
+                                <ul class="actions">
+                                    <li><a href="generic.html" class="button">View messages</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="inner">
+                                <header class="major">
+                                    <h3>Reviews</h3>
+                                </header>
+                                <p>Manage user opinions about our products and services. list and manage opinions.</p>
+                                <ul class="actions">
+                                    <li><a href="{{ url_for('review_admin.list') }}" class="button">See reviews</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </section>
+{% endblock %}

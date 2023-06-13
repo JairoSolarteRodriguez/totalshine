@@ -17,13 +17,19 @@ def create_app():
     
     db.init_app(app)
 
-    from . import auth, schedule
+    from . import auth, schedule, home, review
+
+    from .admin import admin, product, hire, review_admin
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(schedule.bp)
+    app.register_blueprint(home.bp)
+    app.register_blueprint(review.bp)
 
-    # @app.route('/')
-    # def index():
-    #     return g.user['name'] + 'Ok'
+    # Register bp admin
+    app.register_blueprint(admin.bp)
+    app.register_blueprint(product.bp)
+    app.register_blueprint(hire.bp)
+    app.register_blueprint(review_admin.bp)
 
     return app

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Product {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h2>Add product</h2>
+            </header>
+            <form method="POST">
+                <label for="title">Title: <input type="text" name="title" id="title" required></label>
+                <label for="description">Description: <textarea name="description" id="description" cols="30" rows="10"></textarea></label>
+                <label for="url_image">Image: <input type="url" name="url_image" id="url_image"></label>
+                <label for="price">Price: <input type="text" name="price" id="price" required></label>
+                <div>
+                    <select name="active" id="active">
+                        <option value="">- Status -</option>
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                </div>
+                <input type="submit" value="Add product">
+            </form>
+        </div>
+    </section>
+{% endblock %}

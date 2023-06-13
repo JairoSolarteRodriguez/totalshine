@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Rate us {% endblock %}
+
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h2>Add your opinion</h2>
+            </header>
+            <form method="POST">
+                <label for="comment">Comment: <textarea name="comment" id="comment" cols="30" rows="10"></textarea></label>
+                <label for="stars">Stars:
+                    <input type="range" id="calificacion" name="stars" min="1" max="5" step="1" hidden>
+                    <div class="stars" data-rating="0">
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                    </div> 
+                    {# <input type="range" min="0" max="5" name="stars" id="stars" required> #}
+                </label>
+                <label for="url_image">Image: <input type="url" name="url_image" id="url_image"></label>
+                <input type="submit" value="Rate">
+            </form>
+        </div>
+    </section>
+{% endblock %}

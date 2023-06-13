@@ -6,8 +6,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='mystyles.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome-all.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='noscript.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <noscript>
     <link rel="stylesheet" href="assets/css/noscript.css" />
   </noscript>
@@ -19,7 +21,7 @@
 
     <!-- Header -->
     <header id="header" class="alt">
-      <a href="{{ url_for('schedule.index') }}" class="logo"><strong>Total</strong> <span>Shine</span></a>
+      <a href="{{ url_for('home.index') }}" class="logo"><strong>Total</strong> <span>Shine</span></a>
       <nav>
         <a href="#menu">Menu</a>
       </nav>
@@ -28,7 +30,20 @@
     <!-- Menu -->
     <nav id="menu">
       <ul class="links">
-        <li><a href="{{ url_for('schedule.index') }}">Home</a></li>
+        {% if g.user %}
+            {% if g.user['rol'] == 'admin' %}
+              <li disabled>Welcome, {{ g.user['name'] }} (Admin)</li>
+            {% else %}
+              <li>Welcome, {{ g.user['name'] }} </li>
+            {% endif %}
+        {% endif %}
+        <li><a href="{{ url_for('home.index') }}">Home</a></li>
+        {% if g.user %}
+            <li><a href="{{ url_for('schedule.list') }}">My Appointments</a></li>
+        {% endif %}
+        {% if g.user['rol'] == 'admin' %}
+            <li><a href="{{ url_for('admin.index') }}">Administration Panel</a></li>
+        {% endif %}
       </ul>
       <ul class="actions stacked">
         {# <li><a href="#" class="button primary fit">Get Started</a></li> #}
@@ -41,17 +56,16 @@
       </ul>
     </nav>
 
-    {# {% block title_page %}{% endblock %} #}
+    {# Messages #}
+    <div class="error-message">
+      {% for message in get_flashed_messages() %}
+          <div class="flash">{{ message }}</div>
+      {% endfor %}
+    </div>
 
     <!-- Contenido principal de la página -->
     {% block content %}
     {% endblock %}
-
-    <div class="error-message">
-        {% for message in get_flashed_messages() %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
-    </div>
 
     <!-- Footer -->
     <footer id="footer">
@@ -60,7 +74,6 @@
           <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
           <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
           <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-          <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
           <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
         </ul>
         <ul class="copyright">
@@ -80,6 +93,7 @@
   <script src="{{ url_for('static', filename='scripts/breakpoints.min.js') }}"></script>
   <script src="{{ url_for('static', filename='scripts/util.js') }}"></script>
   <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/myscript.js') }}"></script>
 
 </body>
 

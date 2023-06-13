@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Reviews {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h3>Review Management</h3>
+            </header>
+            
+            {% if reviews|length == 0 %}
+                <h4>No reviews added</h4>
+            {% else %}
+                <!-- Table -->
+                <h4>List of reviews</h4>
+                <div class="alt">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Comment</th>
+                                <th>Stars</th>
+                                <th>Imagen</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for review in reviews %}
+                                <tr>
+                                    <td>{{ review['name'] }}</td>
+                                    <td>{{ review['comment'] }}</td>
+                                    <td>{{ review['stars'] }}</td>
+                                    <td><a href="#"><i class="icon fa-solid fa-eye"></i></a></td>
+                                    <td>eliminar</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        {# <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="actions fit small">
+                                        <li><a href="{{ url_for('product.create') }}" class="button primary fit icon solid fa-plus">Add product</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tfoot> #}
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

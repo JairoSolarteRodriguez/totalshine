@@ -72,6 +72,18 @@ input, select, textarea {
 	appearance: none;
 }
 
+.my-grid{
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+@media (max-width: 600px) {
+	.my-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
 /* Basic */
 
 	@-ms-viewport {
@@ -2443,13 +2455,13 @@ input, select, textarea {
 	}
 
 		table tbody tr {
-			border: solid 1px rgba(212, 212, 255, 0.1);
+			border: solid 1px #1212121a;
 			border-left: 0;
 			border-right: 0;
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(212, 212, 255, 0.035);
+				background-color: #14b1bf8e;
 			}
 
 		table td {
@@ -2465,11 +2477,11 @@ input, select, textarea {
 		}
 
 		table thead {
-			border-bottom: solid 2px rgba(212, 212, 255, 0.1);
+			border-bottom: solid 2px #1212121a;
 		}
 
 		table tfoot {
-			border-top: solid 2px rgba(212, 212, 255, 0.1);
+			border-top: solid 2px #1212121a;
 		}
 
 		table.alt {
@@ -2477,7 +2489,7 @@ input, select, textarea {
 		}
 
 			table.alt tbody tr td {
-				border: solid 1px rgba(212, 212, 255, 0.1);
+				border: solid 1px #1212121a;
 				border-left-width: 0;
 				border-top-width: 0;
 			}
@@ -2517,7 +2529,7 @@ input, select, textarea {
 		border: 0;
 		border-radius: 0;
 		box-shadow: inset 0 0 0 2px #141414;
-		color: #141414;
+		color: #fff;
 		cursor: pointer;
 		display: inline-block;
 		font-size: 0.8em;
@@ -2672,7 +2684,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #141414;
+			background-color: #14141428;
 			box-shadow: none;
 			color: #14141489;
 		}

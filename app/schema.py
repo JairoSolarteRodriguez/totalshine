@@ -55,6 +55,7 @@ instructions = [
             phone VARCHAR(50),
             notes TEXT,
             schedule_state VARCHAR(20) NOT NULL DEFAULT 'scheduled',
+            email VARCHAR(255) NOT NULL,
 
             FOREIGN KEY (id_user) REFERENCES user_app (id_user)
         );
@@ -65,6 +66,16 @@ instructions = [
             image_url TEXT NOT NULL,
             created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             type VARCHAR(50) DEFAULT 'gallery'
+        );
+    """,
+    """
+        CREATE TABLE review_image(
+            id_review_image SERIAL PRIMARY KEY,
+            id_review INT NOT NULL,
+            id_image INT NOT NULL,
+
+            FOREIGN KEY (id_review) REFERENCES review (id_review),
+            FOREIGN KEY (id_image) REFERENCES image (id_image)
         );
     """,
     """

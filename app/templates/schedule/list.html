@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Schedule list {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h3>Schedule Management</h3>
+            </header>
+            
+            {% if schedules|length == 0 %}
+                <h4>Has not scheduled appointments. Want to schedule one?</h4>
+                <ul class="actions fit small">
+                    <li><a href="{{ url_for('schedule.create') }}" class="button primary fit icon solid fa-plus">Appointment Schedule</a></li>
+                </ul>
+            {% else %}
+                <!-- Table -->
+                <h4>List of the last 5 appointments you have made with your account</h4>
+                <div class="alt">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Created At</th>
+                                <th>Description</th>
+                                <th>Appointment date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for schedule in schedules %}
+                                <tr>
+                                    <td>{{ schedule['scheduling_date'].strftime('%d-%m-%Y') }}</td>
+                                    <td>{{ schedule['notes'] }}</td>
+                                    <td>{{ schedule['schedule_for'].strftime('%d-%m-%Y:%HH:%MM') }}</td>
+                                    <td>
+                                        {% if schedule['schedule_state'] == 'finished' %}
+                                        <a href="{{ url_for('review.create', id=schedule['id_schedule']) }}">Rate work<i class="fa-solid fa-stars"></i></a>
+                                        {% else %}
+                                            <a href="{{ url_for('schedule.status', id=schedule['id_schedule']) }}">See status</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                {# <td colspan="3"></td> #}
+                                <td colspan="4">
+                                    <ul class="actions fit small">
+                                        <li><a href="{{ url_for('schedule.create') }}" class="button primary fit icon solid fa-plus">Appointment Schedule</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Hire {% endblock %}
+
+{% block content %}
+    <section id="two" class="flex">
+        <div class="inner">
+            <header class="major">
+                <h2>Add hire</h2>
+            </header>
+            <form method="POST">
+                <label for="title">Title: <input type="text" name="title" id="title" required></label>
+                <label for="description">Description: <textarea name="description" id="description" cols="30" rows="10"></textarea></label>
+                <label for="url_image">Image: <input type="url" name="url_image" id="url_image"></label>
+                <input type="submit" value="Add hire">
+            </form>
+        </div>
+    </section>
+{% endblock %}
